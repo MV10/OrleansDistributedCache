@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h3>Session State via OrleansDistributedCache</h3>
+    <hr/>
+    <p><strong>First visit: </strong>@Model.DateFirstSeen.ToString("O")</p>
+    <p><strong>Currently: </strong>@Model.Now.ToString("O")</p>
+</div>

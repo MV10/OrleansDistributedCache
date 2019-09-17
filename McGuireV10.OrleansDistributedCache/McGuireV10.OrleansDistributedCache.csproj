@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Jon McGuire</Authors>
+    <Company />
+    <Description>An ASP.NET IDistributedCache implementation based on Microsoft Orleans with persistence support.</Description>
+    <Version>1.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>McGuireV10.OrleansDistributedCache</PackageId>
+    <PackageTags>Orleans Cache IDistributedCache Session</PackageTags>
+    <RepositoryUrl>https://github.com/MV10/OrleansDistributedCache</RepositoryUrl>
+    <AssemblyName>McGuireV10.OrleansDistributedCache</AssemblyName>
+    <RootNamespace>McGuireV10.OrleansDistributedCache</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>C:\Source\_dev_nuget_packages\McGuireV10.OrleansDistributedCache\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.0.0-rc1.19456.10" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0-rc1.19456.10" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.0.0-rc1.19456.10" />
+    <PackageReference Include="Microsoft.Orleans.Client" Version="2.4.2" />
+    <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="2.4.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="2.4.2" />
+  </ItemGroup>
+
+</Project>
