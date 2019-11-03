@@ -29,7 +29,11 @@ namespace SessionStateDemo
             });
 
             // add this
-            services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(20));
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = TimeSpan.FromMinutes(20);
+                opt.Cookie.IsEssential = true; // prevents GDPR changes from disabling session state
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

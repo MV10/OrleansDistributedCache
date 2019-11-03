@@ -36,7 +36,6 @@ namespace SiloDemo
                         {
                             opt.ConnectionString = ConnectionString;
                             opt.Invariant = StorageProviderNamespace;
-                            opt.UseXmlFormat = true;
                         })
 
                     .Configure<ClusterOptions>(opt => 

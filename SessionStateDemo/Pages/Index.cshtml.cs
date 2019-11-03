@@ -24,7 +24,7 @@ namespace SessionStateDemo.Pages
         {
             await HttpContext.Session.LoadAsync();
 
-            if(HttpContext.Session.TryGetValue(sessionKey, out var sessionDate))
+            if (HttpContext.Session.TryGetValue(sessionKey, out var sessionDate))
             {
                 DateFirstSeen = JsonSerializer.Deserialize<DateTimeOffset>(sessionDate);
             }

@@ -63,18 +63,30 @@ namespace McGuireV10.OrleansDistributedCache
 
         [Obsolete(Use_Async_Only_Message)]
         public void Set(string key, byte[] value, DistributedCacheEntryOptions options)
-            => throw new NotImplementedException(Use_Async_Only_Message);
+            => SyncOverAsync.Run(() => SetAsync(key, value, options));
 
         [Obsolete(Use_Async_Only_Message)]
         public byte[] Get(string key)
-            => throw new NotImplementedException(Use_Async_Only_Message);
+            => SyncOverAsync.Run(() => GetAsync(key));
 
         [Obsolete(Use_Async_Only_Message)]
         public void Refresh(string key)
-            => throw new NotImplementedException(Use_Async_Only_Message);
+            => SyncOverAsync.Run(() => RefreshAsync(key));
 
         [Obsolete(Use_Async_Only_Message)]
         public void Remove(string key)
-            => throw new NotImplementedException(Use_Async_Only_Message);
+            => SyncOverAsync.Run(() => RemoveAsync(key));
+
+        private static class SyncOverAsync
+        {
+            private static readonly TaskFactory factory 
+                = new TaskFactory(CancellationToken.None, TaskCreationOptions.None, TaskContinuationOptions.None, TaskScheduler.Default);
+
+            public static void Run(Func<Task> task)
+                => factory.StartNew(task).Unwrap().GetAwaiter().GetResult();
+            
+            public static TResult Run<TResult>(Func<Task<TResult>> task)
+                => factory.StartNew(task).Unwrap().GetAwaiter().GetResult();
+        }
     }
 }

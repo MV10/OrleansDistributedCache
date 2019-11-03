@@ -11,6 +11,8 @@ using McGuireV10.OrleansDistributedCache;
 
 namespace StandAloneClientDemo
 {
+    // Run two copies of this to watch them update each other via cache
+
     public class Program
     {
         private static string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=true;Database=OrleansDistributedCache";
@@ -20,6 +22,8 @@ namespace StandAloneClientDemo
 
         private static ServiceProvider services;
 
+        private const int REFRESH_RATE_MS = 250; 
+
         public static async Task Main(string[] args)
         {
             await Startup();
@@ -28,15 +32,22 @@ namespace StandAloneClientDemo
             while(running)
             {
                 await RefreshDisplay();
-                var key = Console.ReadKey(true);
-                if(key.Key == ConsoleKey.Escape)
+                if(Console.KeyAvailable)
                 {
-                    running = false;
+                    var key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Escape)
+                    {
+                        running = false;
+                    }
+                    else
+                    {
+                        if (key.KeyChar >= '0' && key.KeyChar <= '9')
+                            await UpdateCacheItem(key.KeyChar);
+                    }
                 }
                 else
                 {
-                    if (key.KeyChar >= '0' && key.KeyChar <= '9')
-                        await UpdateCacheItem(key.KeyChar);
+                    await Task.Delay(REFRESH_RATE_MS);
                 }
             }
             await Shutdown();
