@@ -4,18 +4,25 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Jon McGuire</Authors>
     <Company />
-    <Description>An ASP.NET IDistributedCache implementation based on Microsoft Orleans with persistence support.</Description>
-    <Version>1.0.2</Version>
+    <Description>A .NET Standard IDistributedCache implementation based on Microsoft Orleans with persistence support.</Description>
+    <Version>1.0.3</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>McGuireV10.OrleansDistributedCache</PackageId>
-    <PackageTags>Orleans Cache IDistributedCache Session</PackageTags>
+    <PackageTags>Cache IDistributedCacheOrleans Session</PackageTags>
     <RepositoryUrl>https://github.com/MV10/OrleansDistributedCache</RepositoryUrl>
     <AssemblyName>McGuireV10.OrleansDistributedCache</AssemblyName>
     <RootNamespace>McGuireV10.OrleansDistributedCache</RootNamespace>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://mcguirev10.com/2019/09/18/distributed-caching-with-microsoft-orleans.html</PackageProjectUrl>
+    <Copyright>Copyright 2019 per Apache 2.0 License Terms</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>C:\Source\_dev_nuget_packages\McGuireV10.OrleansDistributedCache\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +35,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Orleans.Core.Abstractions" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

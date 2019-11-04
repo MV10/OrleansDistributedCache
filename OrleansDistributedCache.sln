@@ -11,10 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "McGuireV10.OrleansDistribut
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3040BCC-C633-457B-93D3-5C1D854C876D}"
 	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandAloneClientDemo", "StandAloneClientDemo\StandAloneClientDemo.csproj", "{A72C9782-5489-408F-8A64-F61DE0428607}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandAloneClientDemo", "StandAloneClientDemo\StandAloneClientDemo.csproj", "{A72C9782-5489-408F-8A64-F61DE0428607}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

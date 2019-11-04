@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace McGuireV10.OrleansDistributedCache
 {
     /// <summary>
-    /// An IDistributedCache implementation based upon Microsoft Orleans. Requires an Orleans IClusterClient singleton service.
+    /// An IDistributedCache implementation based upon Microsoft Orleans. Expects Dependency Injection 
+    /// to provide an Orleans IClusterClient singleton service to the constructor.
     /// </summary>
     public class OrleansDistributedCacheService : IDistributedCache
     {
@@ -23,6 +24,9 @@ namespace McGuireV10.OrleansDistributedCache
             this.clusterClient = clusterClient;
         }
 
+        /// <summary>
+        /// Stores a byte array to the cache by updating the State of an Orleans grain identified by the provided key.
+        /// </summary>
         public Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default)
         {
             var created = DateTimeOffset.UtcNow;
@@ -31,14 +35,23 @@ namespace McGuireV10.OrleansDistributedCache
             return clusterClient.GetGrain<IOrleansDistributedCacheGrain<byte[]>>(key).Set(new Immutable<byte[]>(value), TimeSpan.FromSeconds(seconds ?? 0));
         }
 
+        /// <summary>
+        /// Retrieves a byte array from the cache by reading the State from an Orleans grain identified by the provided key.
+        /// </summary>
         public async Task<byte[]> GetAsync(string key, CancellationToken token = default)
             => (await clusterClient.GetGrain<IOrleansDistributedCacheGrain<byte[]>>(key).Get()).Value;
 
+        /// <summary>
+        /// Unnecessary for an Orleans-based cache. Forces a reload from persistent storage of the State from an Orleans grain identified by the provided key.
+        /// </summary>
         public Task RefreshAsync(string key, CancellationToken token = default)
             => clusterClient.GetGrain<IOrleansDistributedCacheGrain<byte[]>>(key).Refresh();
 
+        /// <summary>
+        /// Stores a null value in the State of an Orleans grain identified by the provided key. Note this does not actually delete the entry from the underlying storage.
+        /// </summary>
         public Task RemoveAsync(string key, CancellationToken token = default)
-            => clusterClient.GetGrain<IOrleansDistributedCacheGrain<byte[]>>(key).Refresh();
+            => clusterClient.GetGrain<IOrleansDistributedCacheGrain<byte[]>>(key).Clear();
 
         private static long? ExpirationSeconds(DateTimeOffset creationTime, DateTimeOffset? absoulteExpiration, DistributedCacheEntryOptions options)
         {

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="McGuireV10.OrleansDistributedCache" Version="1.0.2" />
+    <PackageReference Include="McGuireV10.OrleansDistributedCache" Version="1.0.3" />
     <PackageReference Include="Microsoft.Orleans.Clustering.AdoNet" Version="3.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.7.0" />
   </ItemGroup>
