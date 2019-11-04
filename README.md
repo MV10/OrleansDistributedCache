@@ -27,6 +27,6 @@ ASP.NET itself doesn't need session storage. Just use the distribted cache direc
 
 This is the repository for the NuGet package McGuireV10.OrleansDistributedCache, and also for code from my 2019 articles describing the project and related demo projects. Currently the repository is not set up for automated builds and distributions, I update NuGet manually if/when necessary.
 
-### [Distributed Caching with Microsoft Orleans](https://mcguirev10.com/2019/09/18/distributed-caching-with-microsoft-orleans.html)
+### [2019-09-18: Distributed Caching with Microsoft Orleans](https://mcguirev10.com/2019/09/18/distributed-caching-with-microsoft-orleans.html)
 
-### [Orleans Distributed Cache NuGet Release](https://mcguirev10.com/2019/11/04/orleans-distributed-cache-nuget-release.html)
+### [2019-11-04: Orleans Distributed Cache NuGet Release](https://mcguirev10.com/2019/11/04/orleans-distributed-cache-nuget-release.html)
